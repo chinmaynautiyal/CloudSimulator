@@ -67,6 +67,8 @@ you will describe your design of the map/reduce implementation of the simulation
 ### For the students who use the alternative textbooks, in the final fifth step
 you will create a simulation that shows how broadcast storm is created in the cloud.
 
+That is, for the final fifth step you create a simulation of the map/reduce framework or a broadcast storm in your cloud deployment model.
+
 ## Baseline
 Your absolute minimum gradeable baseline project can be based on the examples that come from the repo Cloud2Sim. To be considered for grading, your project should include at least one of your simulation programs written in Java, your project should be buildable using the SBT or the Gradle, and your documentation must specify how you create and evaluate your simulated clouds based on the cloud models that we learn in the class. Your documentation must include the results of your simulation, the measurement of the runtime parameters of the simulator (e.g., CPU and RAM utilization) and your explanations of how these results help you with your simulation objectives (e.g., choose the right cloud model and configuration). Simply copying Java programs from examples and modifying them a bit (e.g., rename some variables) will result in desk-rejecting your submission.
 
