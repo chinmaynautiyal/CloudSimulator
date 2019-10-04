@@ -34,6 +34,7 @@ object driver extends LazyLogging {
     val calendar = Calendar.getInstance()
     val traceFlag = false
     val cloudSim = CloudSim.init(num_user, calendar, traceFlag) //notes to self: can I run it for one sim object and multiple architectures or do I need multiple sim objects?
+    
 
     //Step 2: creating datacenters for each datacenter config in cloud arch
 

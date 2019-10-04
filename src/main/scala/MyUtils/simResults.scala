@@ -4,12 +4,11 @@ case class simResults(aCLen : Double, aCCost : Double, aExecTime: Double, aBwCos
   //encapsulates results from 1 single simulation based on cloudlet performance values
   //a collection of these objects can be used to compute the statistics when iterating
 
-  //val cloudArchitecture : String = _
   var avgCloudletLen : Double = aCLen
   var avgCPUcost : Double = aCCost
   var avgExecutionTime: Double = aExecTime
   var avgBandwidthCost: Double = aBwCost
-  //val avgTotalCost: Double = _
+
 
 }
 
