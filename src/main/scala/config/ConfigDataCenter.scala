@@ -1,7 +1,7 @@
 package config
 import scala.beans.BeanProperty
 import scala.jdk.CollectionConverters._
-
+//Configuration object for Data Center characteristics
 
 class ConfigDataCenter {
 

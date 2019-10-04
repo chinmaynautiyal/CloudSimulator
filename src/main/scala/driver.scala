@@ -34,7 +34,7 @@ object driver extends LazyLogging {
     val calendar = Calendar.getInstance()
     val traceFlag = false
     val cloudSim = CloudSim.init(num_user, calendar, traceFlag) //notes to self: can I run it for one sim object and multiple architectures or do I need multiple sim objects?
-    
+
 
     //Step 2: creating datacenters for each datacenter config in cloud arch
 
@@ -85,19 +85,21 @@ object driver extends LazyLogging {
   }
 
 
-
+//returns appropriate broker
   def fetchBroker(i: (Int, job), lb: String): DatacenterBroker   = {
 
     //returns broker list for each job in accordance with job ids, allocation policy and loadBalancer
     //create normal datacenter for now then work with network datacenter
     val name: String = i.getClass.getSimpleName
     val broker = new MyDataCenterBroker()
+
     val brokerId = broker.getId
     //initialise job
 
     val jobRef = i._2
     val ind = i._1
 
+    //bind job to broker
     jobRef.setJob(ind, broker)
     //create job vms and cloudletlist
 
@@ -107,6 +109,7 @@ object driver extends LazyLogging {
 
     broker.submitVmList(vList.asJava)
     broker.submitCloudletList(cList.asJava)
+    //return broker
     broker
 
 
@@ -137,6 +140,8 @@ object driver extends LazyLogging {
     }.toList
   }
 
+
+  //returns list of result objects for individual brokers
   def printSimResults (bList: List[DatacenterBroker]): List[simResults] = {
     bList.map { i =>
       logger.info(s"Printing results for broker")
@@ -175,6 +180,7 @@ object driver extends LazyLogging {
 
   }
 
+  //print average results for all brokers over iterations of the simulation
 def printAllStats(resultList: List[simResults]): Unit = {
   //prints all stats for one architecture over given number of iterations
 

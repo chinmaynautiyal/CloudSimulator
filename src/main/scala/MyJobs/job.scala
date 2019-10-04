@@ -4,6 +4,11 @@ import org.cloudbus.cloudsim.{Cloudlet, CloudletScheduler, CloudletSchedulerTime
 import org.cloudbus.cloudsim.core.CloudSim
 import scala.util.Random
 
+/*sample job with demand vectors,
+to test the simulation
+
+
+*/
 class job {
 //needs to have a ref to current broker object
   //needs vm and cloudlet creating methods

@@ -2,6 +2,8 @@ package config
 
 import scala.beans.BeanProperty
 
+
+//configuration object for host within the data center
 class ConfigHost {
 
   @BeanProperty var number: Int = _

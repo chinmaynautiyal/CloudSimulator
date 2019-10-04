@@ -21,7 +21,7 @@ The user's demands/jobs are used to create a broker object which acts on their b
 -The driver code creates 5 sample jobs which dynamically create some cloudlets. 
 
 
-- The screenshots are attached as part of a pdf. 
+- The screenshots are attached as a png within the repo
 
 
 

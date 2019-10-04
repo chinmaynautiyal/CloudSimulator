@@ -1,6 +1,8 @@
 package config
 import scala.beans.BeanProperty
 
+
+//config object for switch
 class ConfigSwitch {
   @BeanProperty var number : Int = _
   @BeanProperty var ports : Int = _
