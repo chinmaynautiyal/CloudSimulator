@@ -17,7 +17,7 @@ import config.ConfigDataCenter
 import config.ConfigSwitch
 import MyDataCenter.{DataCenterLib, MyDataCenterBroker}
 import MyJobs.job
-
+import MyUtils.simResults
 
 
 object driver extends LazyLogging {
@@ -75,6 +75,8 @@ object driver extends LazyLogging {
       logger.info(s"Starting simulation")
       CloudSim.startSimulation()
 
+      val resultList = printSimResults(dcBrokerList)
+      printAllStats(resultList)
 
       //val dataCenterbroker = createBroker();
 
@@ -134,13 +136,61 @@ object driver extends LazyLogging {
     }.toList
   }
 
-  def printSimResults (bList: List[DatacenterBroker]): Unit = {
+  def printSimResults (bList: List[DatacenterBroker]): List[simResults] = {
+    bList.map { i =>
+      logger.info(s"Printing results for broker")
+      val indent = "        "
+      println("=====================OUTPUT==========================")
+      println("Cloudlet ID" + indent + "STATUS" + indent + "Data center ID" + indent + "VM ID"
+        + indent + "Time" + indent + "Start Time" + indent + "Finish Time")
+      println()
+      val brokerCompletedCloudlets = i.getCloudletReceivedList().asInstanceOf[java.util.List[Cloudlet]].asScala
+      brokerCompletedCloudlets.foreach { i =>
+
+        print(indent + i.getCloudletId() + indent)
+        if (i.getCloudletStatus == Cloudlet.SUCCESS) {
+          print("SUCCESS")
+          println(indent + i.getResourceId() + indent + indent
+            + i.getVmId() + indent + indent + i.getActualCPUTime()
+            + indent + indent + i.getExecStartTime() + indent + indent
+            + i.getFinishTime())
+
+
+        }
+
+      }
+      //collect into result list
+      //get cloudlet performance measures
+      val size = brokerCompletedCloudlets.size
+      val result = MyUtils.simResults(brokerCompletedCloudlets.map(i => i.getCloudletTotalLength).sum / size,
+        brokerCompletedCloudlets.map(i => i.getFinishTime - i.getExecStartTime).sum / size,
+        brokerCompletedCloudlets.map(i => i.getActualCPUTime * i.getCostPerSec).sum / size,
+        brokerCompletedCloudlets.map(i => i.getAccumulatedBwCost).sum / size)
+      result
+    }
+
 
 
 
   }
 
+def printAllStats(resultList: List[simResults]): Unit = {
+  //prints all stats for one architecture over given number of iterations
 
+  logger.info("Printing results of the simulation")
+  println("*****************SIMULATION RESULTS*******************")
+
+  val size = resultList.size
+  println("Result for " + size + " brokers ")
+
+  resultList.foreach { i =>
+    val indent = "    "
+    println()
+    println("Avg Execution Time" + indent + "Avg CPU Cost" + indent + indent + "Avg Bandwidth Cost")
+    println(i.avgExecutionTime + indent + indent +  i.avgCPUcost + indent + indent +  i.avgBandwidthCost)
+  }
+
+}
 
 
 

@@ -2,7 +2,7 @@ package MyJobs
 
 import org.cloudbus.cloudsim.{Cloudlet, CloudletScheduler, CloudletSchedulerTimeShared, DatacenterBroker, UtilizationModel, UtilizationModelFull, Vm}
 import org.cloudbus.cloudsim.core.CloudSim
-
+import scala.util.Random
 
 class job {
 //needs to have a ref to current broker object
@@ -34,12 +34,17 @@ class job {
   def createCLoudletList(IdtoSet : Int):   List[Cloudlet] = {
     //for now make 10 cloudlets with a given configuration
 
-    val cloudletLength = 10000
+
+    //val cloudletLength = 10000
     val pesNumber = 1
     val cloudletFileSize = 300
     val cloudletOutputSize = 400
 
-    (1 to 10).map { i =>
+
+
+    (1 to 100).map { i =>
+      val r = new scala.util.Random
+      val cloudletLength = 10000 + r.nextInt(( 100000 - 10000) + 1)
       val newCloudlet = new Cloudlet(i, cloudletLength, pesNumber, cloudletFileSize, cloudletOutputSize,
         new UtilizationModelFull(), new UtilizationModelFull(), new UtilizationModelFull())
       newCloudlet.setUserId(IdtoSet)
