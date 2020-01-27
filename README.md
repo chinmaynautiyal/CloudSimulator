@@ -1,3 +1,4 @@
+
 #CS 441 - Homework 1
 ###Name: Chinmay Nautiyal
 ###UIN : 677285320
@@ -43,8 +44,6 @@ The
 
 
 - Simple Pricing and Complex Prices: last semester we did a project on simulating revenue and welfare guarentess when there is a simple price per resrouce, as compared to when there are complex fixed prices per resource. We did fairly simple probabilistic simulations; Cloudsim provides a much more complex and configurable environment to run such simulations. Although I would have liked to have done those things with this homework, my resource provider simply could not handle the incoming demands of this project. Hopefully, my system will scale better for future homeworks. 
-
-
 
 
 
